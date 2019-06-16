@@ -1,0 +1,27 @@
+<project name="jokeHolder" basedir=".">
+  <description>
+    Build tool for jokeHolder application
+  </description>
+  <target name="clean">
+     <delete dir="src/build"/>
+     <delete dir="src/classes"/>
+  </target>
+      <target name="compile">
+          <mkdir dir="src/classes"/>
+          <javac srcdir="src" destdir="src/classes"/>
+      </target>
+
+      <target name="jar">
+          <mkdir dir="src/build/jar"/>
+          <jar destfile="src/build/jar/jokeHolder.jar" basedir="src/classes">
+              <manifest>
+                  <attribute name="Main-Class" value="Run"/>
+              </manifest>
+          </jar>
+      </target>
+
+      <target name="run">
+          <java jar="src/build/jar/jokeHolder.jar" fork="true"/>
+      </target>
+
+</project>

@@ -1,0 +1,8 @@
+Buildfile: /home/boyan/Learning/Small_Programs/Java_JokeHolder/build.xml
+
+compile:
+    [javac] /home/boyan/Learning/Small_Programs/Java_JokeHolder/build.xml:11: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /home/boyan/Learning/Small_Programs/Java_JokeHolder/src/classes
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
