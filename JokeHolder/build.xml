@@ -15,7 +15,7 @@
           <mkdir dir="src/build/jar"/>
           <jar destfile="src/build/jar/jokeHolder.jar" basedir="src/classes">
               <manifest>
-                  <attribute name="Main-Class" value="Run"/>
+                  <attribute name="Main-Class" value="src.Run"/>
               </manifest>
           </jar>
       </target>

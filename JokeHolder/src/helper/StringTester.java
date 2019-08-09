@@ -1,9 +1,13 @@
+package src.data;
+
 import java.util.HashSet;
 
 public class StringTester{
 
   public static void main(String[] args){
     HashSet<String> testTags = new HashSet<String>();
+
+    JokeParams jokeParam = new JokeParams();
 
     testTags.add("tag1");
     testTags.add("tag2");
@@ -22,5 +26,7 @@ public class StringTester{
       System.out.println("Element: " + i + " -> " + tagsString[i]);
     }
 
+    System.out.println(jokeParam.STR_END_JOKE);
+    System.out.println(JokeParams.STR_CANCEL_ENTERING);
   }
 }

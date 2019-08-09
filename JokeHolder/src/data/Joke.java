@@ -1,4 +1,4 @@
-package data;
+package src.data;
 
 import java.util.HashSet;
 
@@ -38,7 +38,7 @@ public class Joke{
     return crntId;
   }
 
-  private void setTag(String tag){
+  public void setTag(String tag){
     this.tags.add(tag);
   }
 

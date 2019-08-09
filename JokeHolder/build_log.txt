@@ -3,7 +3,7 @@ Buildfile: /home/blagiev/Programming/Projects/JokeHolder/build.xml
 compile:
     [mkdir] Created dir: /home/blagiev/Programming/Projects/JokeHolder/src/classes
     [javac] /home/blagiev/Programming/Projects/JokeHolder/build.xml:11: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 11 source files to /home/blagiev/Programming/Projects/JokeHolder/src/classes
+    [javac] Compiling 13 source files to /home/blagiev/Programming/Projects/JokeHolder/src/classes
 
 BUILD SUCCESSFUL
 Total time: 1 second

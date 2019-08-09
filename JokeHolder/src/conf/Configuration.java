@@ -1,6 +1,6 @@
-package conf;
+package src.conf;
 
-import io.*;
+import src.io.*;
 
 public interface Configuration{
 

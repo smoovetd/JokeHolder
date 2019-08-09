@@ -1,8 +1,12 @@
-import conf.*;
-import io.*;
-import java.io.*;
-import data.Joke;
+package src;
+
 import java.util.HashSet;
+import java.io.*;
+
+import src.conf.*;
+import src.io.*;
+import src.data.*;
+import src.exceptions.*;
 
 public class Run{
   private static Input input;
@@ -16,6 +20,8 @@ public class Run{
 
     input = config.getCrntInput();
     output = config.getCrntOutput();
+
+    JokeFactory jokeFactory = new JokeFactory();
 
     boolean stopLoop = true;
     boolean tryAgain = false;
@@ -49,10 +55,12 @@ public class Run{
         tryAgain = false;
         continue;
       } else{
-        output.showOutput("Enter Joke:");
-        String jokeContent = input.getInput();
-        Joke crntJoke = new Joke(jokeContent);
-        jokes.add(crntJoke);
+        try{
+          Joke crntJoke = jokeFactory.createJoke(input, output);
+          jokes.add(crntJoke);
+        }catch(JokeCreationException ex){
+          output.showOutput(ex.toString());
+        }
         continue;
       }
     }while(true);

@@ -1,6 +1,6 @@
-package conf;
+package src.conf;
 
-import io.*;
+import src.io.*;
 
 public class ConfigurationConsole implements Configuration{
   private Output crntOutput;
