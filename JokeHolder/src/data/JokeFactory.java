@@ -15,7 +15,7 @@ public class JokeFactory{
     Joke crntJoke = null;
     boolean isFinished = false;
 
-    System.out.println(JokeParams.STR_END_JOKE);
+    //System.out.println(JokeParams.STR_END_JOKE);
     output.showOutput("Enter Joke content. When done write in new line: " + JokeParams.STR_END_JOKE);
     output.showOutput("If you want to cancel enter on empty line: " + JokeParams.STR_CANCEL_ENTERING);
 

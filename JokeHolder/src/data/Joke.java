@@ -63,11 +63,11 @@ public class Joke{
     String result = "";
     result = "Joke ID: " + this.getId() + "\n\t" + this.getContent();
     if(tagsCount == 0){
-      result += "\n\tno tags";
+      result += "\tno tags";
     } else{
-      result += "\n\t" + tagsCount + " tags:";
+      result += "\t" + tagsCount + " tags:";
       for(int i = 0; i < tags.length; i++){
-        result+="\t" + tags[i];
+        result+=" '" + tags[i] + " '";
       }
     }
 
