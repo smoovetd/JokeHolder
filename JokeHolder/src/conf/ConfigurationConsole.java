@@ -1,15 +1,19 @@
 package src.conf;
 
 import src.io.*;
+import src.storage.*;
 
 public class ConfigurationConsole implements Configuration{
   private Output crntOutput;
 
   private Input crntInput;
 
-  public ConfigurationConsole(){
+  private Storage crntStorage;
+
+  public ConfigurationConsole(String dbName){
     this.setCrntInput(new ConsoleInput());
     this.setCrntOutput(new ConsoleOutput());
+    this.setCrntStorage(new StorageInDb(dbName));
   }
 
   private void setCrntInput(Input input){
@@ -28,4 +32,11 @@ public class ConfigurationConsole implements Configuration{
     return this.crntOutput;
   }
 
+  private void setCrntStorage(Storage storage){
+    this.crntStorage = storage;
+  }
+
+  public Storage getCrntStorage(){
+    return this.crntStorage;
+  }
 }

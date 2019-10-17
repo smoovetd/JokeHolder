@@ -5,23 +5,18 @@
     </fileset>
   </path>
 
-  <manifestclasspath property="myprogram.manifest.classpath" jarfile="src/build/jar/jokeHolder.jar" maxParentLevels="4">
-    <classpath>
-      <fileset dir="libs" includes="*.jar" />
-    </classpath>
-  </manifestclasspath>
-
   <description>
     Build tool for jokeHolder application
   </description>
   <target name="clean">
-    <!-- <delete dir="src/build"/> -->
+     <delete dir="src/build"/>
      <delete dir="src/classes"/>
   </target>
 
     <target name="compile">
         <mkdir dir="src/classes"/>
         <javac srcdir="src" destdir="src/classes">
+          <classpath refid="build.classpath"/>
         </javac>
     </target>
 
@@ -30,13 +25,18 @@
         <jar destfile="src/build/jar/jokeHolder.jar" basedir="src/classes">
             <manifest>
                 <attribute name="Main-Class" value="src.Run"/>
-                <attribute name="Class-Path" value="${myprogram.manifest.classpath}"/>
+                <attribute name="Class-Path" value="${build.classpath}"/>
             </manifest>
+
         </jar>
     </target>
 
     <target name="run">
         <java jar="src/build/jar/jokeHolder.jar" fork="true">
+          <!--  <classpath>
+              <path refid="build.classpath"/>
+              <path location = "src/h2.jar"/>
+            </classpath> -->
         </java>
     </target>
 
