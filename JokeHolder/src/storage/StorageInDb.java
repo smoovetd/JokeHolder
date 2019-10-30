@@ -31,28 +31,53 @@ public class StorageInDb implements Storage{
   @Override
   public boolean createStorageTable(){
     String createTableQuery = "CREATE TABLE IF NOT EXISTS " + this.getDbName() + " " + tableColumns;
-    String verifyTableQuery = "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'" + this.getDbName() + "') BEGIN RETURN 'Exists' END";
+    String verifyTableQuery = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
+    boolean result = false;
+    boolean isFound = false;
+
     try{
        Class.forName(dbDriver).newInstance();
        Connection conn = DriverManager.getConnection(dbConnectionSettings, dbUserName, dbPass);
        conn.createStatement().execute(createTableQuery);
+
        ResultSet resSet = conn.createStatement().executeQuery(verifyTableQuery);
+
+       while (resSet.next()){
+         System.out.println("=================================");
+         System.out.println("ID : " + resSet.getString("id"));
+         System.out.println("JOKE : " + resSet.getString("TABLE_NAME"));
+         System.out.println("=================================");
+         String tbName = resSet.getString("TABLE_NAME").toUpperCase();
+         String origTableName = this.getDbName().toUpperCase();
+         System.out.println("Orig Table: " + origTableName + "; new table: " + tbName + ". Result: " + (tbName.equals(origTableName)));
+         if (tbName.equals(origTableName)){
+           isFound = true;
+           break;
+         }
+       }
+
+       if(isFound == true){
+         result = true;
+       } else {
+         System.out.println("ERROR - no table with name: " +  this.getDbName() + " exist");
+         result = false;
+       }
        conn.close();
      } catch (SQLException ex){
        System.out.println("ERROR - " + ex.toString());
-       return false;
+       result = false;
      } catch (ClassNotFoundException classEx){
        System.out.println("ERROR - " + classEx.toString());
-       return false;
+       result = false;
      } catch (InstantiationException instantEx){
        System.out.println("ERROR - " + instantEx.toString());
-       return false;
+       result = false;
      } catch (IllegalAccessException accessEx){
        System.out.println("ERROR - " + accessEx.toString());
-       return false;
+       result = false;
      }
 
-     return true;
+     return result;
   }
 
   @Override
