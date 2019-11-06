@@ -81,8 +81,44 @@ public class StorageInDb implements Storage{
   }
 
   @Override
-  public boolean storeJoke(Joke crntJoke) throws JokeCreationException{
-      throw new JokeCreationException("ERROR - function storeJoke() is not implemented");
+  public boolean storeJoke(Joke crntJoke){
+    boolean result = false;
+    String addJokeQuery = "";
+    String tags = "";
+
+    for (String tag : crntJoke.getTags()){
+      if (!tags.equals("")){
+          tags = tags + ",'" + tag + "'";
+      }else{
+        tags = "'" + tag + "'";
+      }
+    }
+    addJokeQuery = "INSERT INTO " + this.getDbName() + " VALUES (" + crntJoke.getId() + ",'" + crntJoke.getContent() + "',(" + tags + "))";
+    //for debug:
+    //System.out.println("Tags: " + tags);
+    //System.out.println("Query: " + addJokeQuery);
+
+    try{
+       Class.forName(dbDriver).newInstance();
+       Connection conn = DriverManager.getConnection(dbConnectionSettings, dbUserName, dbPass);
+       result = conn.createStatement().execute(addJokeQuery);
+
+       conn.close();
+     } catch (SQLException ex){
+       System.out.println("ERROR - " + ex.toString());
+       result = false;
+     } catch (ClassNotFoundException classEx){
+       System.out.println("ERROR - " + classEx.toString());
+       result = false;
+     } catch (InstantiationException instantEx){
+       System.out.println("ERROR - " + instantEx.toString());
+       result = false;
+     } catch (IllegalAccessException accessEx){
+       System.out.println("ERROR - " + accessEx.toString());
+       result = false;
+     }
+
+    return result;
   }
 
   @Override

@@ -76,18 +76,18 @@ public class Run{
 
     output.showOutput("All Jokes Entered:");
 
-    for (Joke crntJoke : jokes ){
-      output.showOutput(crntJoke.toString());
-    }
-
-    //Add jokes to the database
     if(storage.createStorageTable()){
        output.showOutput("DB connection is successful");
     } else{
        output.showOutput("ERROR DB connection is NOT successful");
     }
 
+    for (Joke crntJoke : jokes ){
+      output.showOutput(crntJoke.toString());
+      storage.storeJoke(crntJoke);
+    }
 
+    //Add jokes to the database
 
   }
 
