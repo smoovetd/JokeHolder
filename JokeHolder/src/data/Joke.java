@@ -77,7 +77,7 @@ public class Joke{
     } else{
       result += "\t" + tagsCount + " tags:";
       for(int i = 0; i < tags.length; i++){
-        result+=" '" + tags[i] + " '";
+        result+=" ' " + tags[i] + " ' ";
       }
     }
 

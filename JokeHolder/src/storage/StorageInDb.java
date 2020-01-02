@@ -147,14 +147,14 @@ public class StorageInDb implements Storage{
           String arrTags = result.getString("tags").toString();
           //System.out.println("getAllJokesFromDB() - id: " + crntId + ",\ncontent: " + content + ". End");
 
-          arrTags = arrTags.split("\\(")[0];
+          arrTags = arrTags.split("\\(")[1];
           arrTags = arrTags.split("\\)")[arrTags.split("\\)").length -1];
+
           String[] crntTags = arrTags.split(",");
           Joke crntJoke = jokeFactory.createJokeWithAllParams(crntId, content);
 
           for(int i = 0; i < crntTags.length; i++){
             if(!crntTags[i].trim().equals("")){
-              System.out.println("TAG: '" + crntTags[i] + "'");
               crntJoke.setTag(crntTags[i]);
             }
           }
