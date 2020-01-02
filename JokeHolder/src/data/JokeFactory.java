@@ -59,4 +59,18 @@ public class JokeFactory{
       }
     }while(!isFinished);
   }
+
+  public Joke createJokeWithAllParams(long id, String content) throws JokeCreationException{
+    //  System.out.println("In createJokeWithAllParams() - \nid: " + id + "\ncontent: " + content);
+      if(id < 0 || JokeParams.usedIds.contains(id)){
+          throw new JokeCreationException("ID " + id + " is already in use!");
+      }
+
+      //for debug
+  //    System.out.println("In createJokeWithAllParams() - \nid: " + id + "\ncontent: " + content);
+
+      Joke crntJoke = new Joke(id, content);
+      JokeParams.usedIds.add(id);
+      return crntJoke;
+  }
 }

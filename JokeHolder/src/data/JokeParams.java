@@ -1,5 +1,7 @@
 package src.data;
 
+import java.util.HashSet;
+
 public class JokeParams{
   public static long nextFreeID = 0;
 
@@ -7,4 +9,5 @@ public class JokeParams{
 
   public static final String STR_CANCEL_ENTERING = "#CANCEL#";
 
+  public static HashSet<Long> usedIds = new HashSet();
 }

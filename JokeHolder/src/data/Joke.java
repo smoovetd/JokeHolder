@@ -16,6 +16,13 @@ public class Joke{
       this.setContent(content);
   }
 
+  public Joke(long id, String content){
+      this.tags = new HashSet<String>();
+      this.setId(id);
+      JokeParams.nextFreeID = id + 1;
+      this.setContent(content);
+  }
+
   private void setContent(String content){
     this.content = content;
   }
@@ -33,8 +40,11 @@ public class Joke{
   }
 
   public static long getnextFreeId(){
-    long crntId = JokeParams.nextFreeID;
-    JokeParams.nextFreeID++;
+    long crntId = 0;
+    while(JokeParams.usedIds.contains(JokeParams.nextFreeID)){
+      JokeParams.nextFreeID++;
+    }
+    crntId = JokeParams.nextFreeID;
     return crntId;
   }
 

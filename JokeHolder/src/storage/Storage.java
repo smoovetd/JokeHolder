@@ -7,7 +7,7 @@ import java.util.*;
 public interface Storage{
     public boolean storeJoke(Joke crntJoke);
 
-    public List<Joke> getAllJokesFromDB()throws JokeCreationException;
+    public HashSet<Joke> getAllJokesFromDB(JokeFactory jokeFactory);
 
     public Joke getJokeById(long id)throws JokeCreationException;
 

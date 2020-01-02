@@ -1,0 +1,94 @@
+/bin/sh: switchml: line 1: syntax error: unexpected end of file
+/bin/sh: error importing function definition for `switchml'
+/bin/sh: module: line 1: syntax error: unexpected end of file
+/bin/sh: error importing function definition for `module'
+/bin/sh: scl: line 1: syntax error: unexpected end of file
+/bin/sh: error importing function definition for `scl'
+/bin/bash: switchml: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `switchml'
+/bin/bash: module: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `module'
+/bin/bash: scl: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `scl'
+/bin/bash: switchml: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `switchml'
+/bin/bash: module: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `module'
+/bin/bash: scl: line 1: syntax error: unexpected end of file
+/bin/bash: error importing function definition for `scl'
+Buildfile: /home/blagiev/Programming/Projects/JokeHolder/build.xml
+
+run:
+     [java] Wellcome to Joke Holder
+     [java] In createJokeWithAllParams() - 
+     [java] id: 1
+     [java] content: Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] 
+     [java] In createJokeWithAllParams() - 
+     [java] id: 1
+     [java] content: Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] 
+     [java] In createJokeWithAllParams() - 
+     [java] id: 0
+     [java] content: Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] 
+     [java] In createJokeWithAllParams() - 
+     [java] id: 0
+     [java] content: Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] 
+     [java] Joke ID: 0
+     [java] 	Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] 	1 tags: ' '
+     [java] ERROR - org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_D ON PUBLIC.JOKE_DB(ID) VALUES (0, 2)"; SQL statement:
+     [java] INSERT INTO joke_db VALUES (0,'Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] ',('')) [23505-197]
+     [java] Joke ID: 1
+     [java] 	Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] 	1 tags: ' '
+     [java] ERROR - org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_D ON PUBLIC.JOKE_DB(ID) VALUES (1, 1)"; SQL statement:
+     [java] INSERT INTO joke_db VALUES (1,'Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] ',('')) [23505-197]
+     [java] Type menu option and press Enter
+     [java] For new joke type 1
+     [java] For search joke by tag type 2
+     [java] For search joke by content type 3
+     [java] To print all jokes type 4
+     [java] For exit press 5
+     [java] Thank you for entering jokes!
+     [java] All Jokes Entered:
+     [java] DB connection is successful
+     [java] Joke ID: 0
+     [java] 	Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] 	1 tags: ' '
+     [java] ERROR - org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_D ON PUBLIC.JOKE_DB(ID) VALUES (0, 2)"; SQL statement:
+     [java] INSERT INTO joke_db VALUES (0,'Чък Норис не лепи магнитчета върху хладилника си. Той има огромен магнит, върху който лепи хладилници от всички места, където е бил.
+     [java] ',('')) [23505-197]
+     [java] Joke ID: 1
+     [java] 	Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] 	1 tags: ' '
+     [java] ERROR - org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_D ON PUBLIC.JOKE_DB(ID) VALUES (1, 1)"; SQL statement:
+     [java] INSERT INTO joke_db VALUES (1,'Чък Норис отишъл на конференцията на феминистките и се върнал с изгладена риза.
+     [java] Chuck Norris
+     [java] Feminists
+     [java] 
+     [java] ',('')) [23505-197]
+
+BUILD FAILED
+Target "2" does not exist in the project "jokeHolder". 
+
+Total time: 4 seconds
