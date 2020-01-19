@@ -97,10 +97,34 @@ public class Run{
             }
             break;
           case "search_tag":
+            String crntTag = getUserInterraction("Enter Tag:", input, output);
+            HashSet<Joke> jokesByTag = new HashSet();
+            if(crntTag.equals(JokeParams.STR_CANCEL_ENTERING) ||
+               crntTag.trim().equals("")){
+                 output.showOutput("Back to main menu!");
+                 continue;
+               }
+
+            for (Joke jokeContainsTag: jokes){
+              if(jokeContainsTag.getTags().contains(crntTag)){
+                jokesByTag.add(jokeContainsTag);
+              }
+            }
+
+            if (jokesByTag.size() == 0){
+              output.showOutput("No jokes with tag '" + crntTag + "' !");
+            } else {
+              output.showOutput("Found " + jokesByTag.size()+  " jokes with tag: '" + crntTag + "'");
+              printAllJokes(jokesByTag);
+            }
+
             break;
           case "search_content":
+            output.showOutput("Search by content not supported!");
             break;
           case "get_all":
+            output.showOutput("Currently there are '" + jokes.size() + "' jokes:" );
+            printAllJokes(jokes);
             break;
           default:
             output.showOutput("Incorrectd action: " + action);
@@ -153,6 +177,23 @@ public class Run{
 
    return storedJokes;
  }
+
+private static String getUserInterraction(String topic, Input input, Output output) throws IOException{
+  String userInput = "";
+  String cancelString = "Press '" + JokeParams.STR_CANCEL_ENTERING + "' for cancel!";
+
+  do {
+    output.showOutput(topic);
+    output.showOutput(cancelString);
+    userInput = input.getInput();
+
+    if(userInput.equals(JokeParams.STR_CANCEL_ENTERING)){
+      break;
+    }
+  } while(userInput.equals(""));
+
+  return userInput;
+}
 
 /*  public static void main_test(String[] args){
     Configuration config = new ConfigurationConsole();
