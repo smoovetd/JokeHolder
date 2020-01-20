@@ -112,16 +112,36 @@ public class Run{
             }
 
             if (jokesByTag.size() == 0){
-              output.showOutput("No jokes with tag '" + crntTag + "' !");
+              output.showOutput("No jokes with tag '" + JokeParams.ANSI_CYAN + crntTag + JokeParams.ANSI_RESET + "' !");
             } else {
-              output.showOutput("Found " + jokesByTag.size()+  " jokes with tag: '" + crntTag + "'");
+              output.showOutput("Found " + jokesByTag.size()+  " jokes with tag: '" + JokeParams.ANSI_CYAN + crntTag + JokeParams.ANSI_RESET + "'");
               printAllJokes(jokesByTag);
             }
 
             break;
           case "search_content":
-            output.showOutput("Search by content not supported!");
-            break;
+          String crntText = getUserInterraction("Enter Content:", input, output);
+          HashSet<Joke> jokesByContent = new HashSet();
+          if(crntText.equals(JokeParams.STR_CANCEL_ENTERING) ||
+             crntText.trim().equals("")){
+               output.showOutput("Back to main menu!");
+               continue;
+             }
+
+          for (Joke jokeContainsContent: jokes){
+            if(jokeContainsContent.getContent().contains(crntText)){
+              jokesByContent.add(jokeContainsContent);
+            }
+          }
+
+          if (jokesByContent.size() == 0){
+            output.showOutput("No jokes with content '" + crntText + "' !");
+          } else {
+            output.showOutput("Found " + jokesByContent.size()+  " jokes with content: '" + crntText + "'");
+            printAllJokes(jokesByContent);
+          }
+
+          break;
           case "get_all":
             output.showOutput("Currently there are '" + jokes.size() + "' jokes:" );
             printAllJokes(jokes);
