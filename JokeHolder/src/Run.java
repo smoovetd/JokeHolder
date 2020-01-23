@@ -1,6 +1,7 @@
 package src;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.io.*;
 
 import src.conf.*;
@@ -41,15 +42,17 @@ public class Run{
 
     jokes = initJokes(jokeFactory, storage);
 
-    printAllJokes(jokes);
+    //for debug
+    //printAllJokes(jokes);
 
     do{
       output.showOutput("Type menu option and press Enter");
       output.showOutput("For new joke type 1");
       output.showOutput("For search joke by tag type 2");
       output.showOutput("For search joke by content type 3");
-      output.showOutput("To print all jokes type 4");
-      output.showOutput("For exit press 5");
+      output.showOutput("To print one random joke type 4");
+      output.showOutput("To print all jokes type 5");
+      output.showOutput("For exit press 6");
 
       inputText = input.getInput();
 
@@ -68,9 +71,13 @@ public class Run{
             break;
         case "4":
           stopLoop = false;
-          action = "get_all";
+          action = "get_random";
           break;
         case "5":
+            stopLoop = false;
+            action = "get_all";
+            break;
+        case "6":
           stopLoop = true;
           break;
         default:
@@ -120,28 +127,32 @@ public class Run{
 
             break;
           case "search_content":
-          String crntText = getUserInterraction("Enter Content:", input, output);
-          HashSet<Joke> jokesByContent = new HashSet();
-          if(crntText.equals(JokeParams.STR_CANCEL_ENTERING) ||
-             crntText.trim().equals("")){
-               output.showOutput("Back to main menu!");
-               continue;
-             }
+            String crntText = getUserInterraction("Enter Content:", input, output);
+            HashSet<Joke> jokesByContent = new HashSet();
+            if(crntText.equals(JokeParams.STR_CANCEL_ENTERING) ||
+               crntText.trim().equals("")){
+                 output.showOutput("Back to main menu!");
+                 continue;
+               }
 
-          for (Joke jokeContainsContent: jokes){
-            if(jokeContainsContent.getContent().contains(crntText)){
-              jokesByContent.add(jokeContainsContent);
+            for (Joke jokeContainsContent: jokes){
+              if(jokeContainsContent.getContent().contains(crntText)){
+                jokesByContent.add(jokeContainsContent);
+              }
             }
-          }
 
-          if (jokesByContent.size() == 0){
-            output.showOutput("No jokes with content '" + crntText + "' !");
-          } else {
-            output.showOutput("Found " + jokesByContent.size()+  " jokes with content: '" + crntText + "'");
-            printAllJokes(jokesByContent);
-          }
+            if (jokesByContent.size() == 0){
+              output.showOutput("No jokes with content '" + JokeParams.ANSI_CYAN + crntText + JokeParams.ANSI_RESET + "' !");
+            } else {
+              output.showOutput("Found " + jokesByContent.size()+  " jokes with content: '" + JokeParams.ANSI_CYAN + crntText + JokeParams.ANSI_RESET + "'");
+              printAllJokes(jokesByContent);
+            }
 
-          break;
+            break;
+          case "get_random":
+            Joke crntJoke = getRandomJoke(jokes);
+            output.showOutput(crntJoke.getContent());
+            break;
           case "get_all":
             output.showOutput("Currently there are '" + jokes.size() + "' jokes:" );
             printAllJokes(jokes);
@@ -165,10 +176,10 @@ public class Run{
     }
 
     //for debug
-    output.showOutput("All Jokes:");
+    /*output.showOutput("All Jokes:");
     printAllJokes(jokes);
     output.showOutput("New Jokes:");
-    printAllJokes(newJokes);
+    printAllJokes(newJokes);*/
 
     storeNewJokes(newJokes);
   }
@@ -213,6 +224,30 @@ private static String getUserInterraction(String topic, Input input, Output outp
   } while(userInput.equals(""));
 
   return userInput;
+}
+
+private static Joke getRandomJoke(HashSet<Joke> jokes){
+  Joke crntJoke = null;
+
+  int minVal = 0;
+  int maxVal = jokes.size();
+  int crntJokeId = 0;
+  boolean isFound = false;
+
+  do{
+    Random rand = new Random();
+    crntJokeId = rand.nextInt((maxVal - minVal) + 1) + minVal;
+
+    for (Joke iterJoke : jokes){
+      if(iterJoke.getId() == crntJokeId){
+        crntJoke = iterJoke;
+        isFound = true;
+        break;
+      }
+    }
+  }while(!isFound);
+
+  return crntJoke;
 }
 
 /*  public static void main_test(String[] args){
